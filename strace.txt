@@ -1,0 +1,44 @@
+Anahita Mohapatra - 260773967
+
+I used strace to trace the system calls made by the executed processes and the signals recieved by the processes.
+This trace was made with commands being inputted from the manual_test001.txt file provided to us on myCourses. 
+Lastly, I redirected the output from strace to this strace.txt file using the -o flag.
+
+
+execve("./finalshell", ["./finalshell"], 0x7fffe48ad060 /* 53 vars */) = 0
+brk(NULL)                               = 0x560882016000
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=78380, ...}) = 0
+mmap(NULL, 78380, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f0349ec4000
+close(3)                                = 0
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\260\34\2\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=2030544, ...}) = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f0349ec2000
+mmap(NULL, 4131552, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f03498c0000
+mprotect(0x7f0349aa7000, 2097152, PROT_NONE) = 0
+mmap(0x7f0349ca7000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e7000) = 0x7f0349ca7000
+mmap(0x7f0349cad000, 15072, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f0349cad000
+close(3)                                = 0
+arch_prctl(ARCH_SET_FS, 0x7f0349ec34c0) = 0
+mprotect(0x7f0349ca7000, 16384, PROT_READ) = 0
+mprotect(0x560880e92000, 4096, PROT_READ) = 0
+mprotect(0x7f0349ed8000, 4096, PROT_READ) = 0
+munmap(0x7f0349ec4000, 78380)           = 0
+rt_sigaction(SIGINT, {sa_handler=0x560880c91782, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f03498fef20}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGTSTP, {sa_handler=0x560880c91748, sa_mask=[TSTP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f03498fef20}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 0), ...}) = 0
+brk(NULL)                               = 0x560882016000
+brk(0x560882037000)                     = 0x560882037000
+fstat(0, {st_mode=S_IFREG|0644, st_size=160, ...}) = 0
+read(0, "ls -l\nls -l | wc\nls -la | grep m"..., 4096) = 160
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f0349ec3790) = 14079
+wait4(14079, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 14079
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=14079, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+write(1, "tshell>> tshell>> Error: No fifo"..., 46) = 46
+lseek(0, -143, SEEK_CUR)                = 17
+exit_group(1)                           = ?
++++ exited with 1 +++
